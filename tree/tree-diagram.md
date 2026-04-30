@@ -1,3 +1,4 @@
+ ```mermaid
 graph TD
 START --> A1_OPEN
 A1_OPEN --> A1_D1
@@ -21,3 +22,4 @@ A3_D1 -->|Self| A3_Q1_SELF
 A3_D1 -->|Other| A3_Q1_ALT
 A3_Q1_SELF --> A3_Q2 --> A3_R_SELF --> SUMMARY --> END
 A3_Q1_ALT --> A3_Q2B --> A3_R_ALT --> SUMMARY2 --> END2
+...
