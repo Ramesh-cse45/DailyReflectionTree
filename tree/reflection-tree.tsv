@@ -1,0 +1,37 @@
+id	parentId	type	text	options	target	signal
+START	null	start	Good evening. Let's reflect on your day.			
+A1_OPEN	START	question	How would you describe today in one word?	Productive|Tough|Mixed|Frustrating		
+A1_D1	A1_OPEN	decision		answer=Productive|Mixed:A1_Q1_HIGH;answer=Tough|Frustrating:A1_Q1_LOW		
+A1_Q1_HIGH	A1_D1	question	When things went well, what made it happen?	I prepared well|I adapted|Team support|It just worked out		axis1:internal
+A1_Q1_LOW	A1_D1	question	When things didn’t go well, what was your instinct?	Fix what I could|Wait for help|Blame situation|Feel stuck		axis1:external
+A1_Q2	A1_Q1_HIGH	question	When facing a challenge, what did you do?	Took initiative|Adjusted plan|Relied on others|Avoided it		axis1:internal
+A1_Q2B	A1_Q1_LOW	question	When facing a challenge, what did you do?	Took initiative|Adjusted plan|Relied on others|Avoided it		axis1:external
+A1_R_INT	A1_Q2	reflection	You showed ownership today. Even small actions reflect strong agency.			axis1:internal
+A1_R_EXT	A1_Q2B	reflection	It felt like things were outside your control. Still, notice where you made even small choices.			axis1:external
+BRIDGE_1_2	A1_R_INT	bridge	Let’s shift from control to contribution.		A2_OPEN	
+BRIDGE_1_2B	A1_R_EXT	bridge	Let’s shift from control to contribution.		A2_OPEN	
+
+A2_OPEN	null	question	Think of one interaction. What stands out?	I helped someone|I did extra work|I needed help|I felt unrecognized		
+A2_D1	A2_OPEN	decision		answer=I helped someone|I did extra work:A2_Q1_HIGH;answer=I needed help|I felt unrecognized:A2_Q1_LOW		
+A2_Q1_HIGH	A2_D1	question	Why did you step beyond your role?	It felt right|Team needed it|I enjoy helping|Expected recognition		axis2:contribution
+A2_Q1_LOW	A2_D1	question	What bothered you most?	Lack of support|Lack of recognition|Others' effort|Unfair workload		axis2:entitlement
+A2_Q2	A2_Q1_HIGH	question	How often do you contribute beyond expectations?	Often|Sometimes|Rarely|Only when asked		axis2:contribution
+A2_Q2B	A2_Q1_LOW	question	How often do you feel overlooked?	Often|Sometimes|Rarely|Never		axis2:entitlement
+A2_R_CON	A2_Q2	reflection	You focused on what you could give. That builds trust and long-term impact.			axis2:contribution
+A2_R_ENT	A2_Q2B	reflection	It's natural to want fairness. But shifting toward contribution often changes how others respond.			axis2:entitlement
+BRIDGE_2_3	A2_R_CON	bridge	Now let’s widen the lens beyond yourself.		A3_OPEN	
+BRIDGE_2_3B	A2_R_ENT	bridge	Now let’s widen the lens beyond yourself.		A3_OPEN	
+
+A3_OPEN	null	question	When you think about today’s challenge, who comes to mind?	Just me|My team|A colleague|Customer/end user		
+A3_D1	A3_OPEN	decision		answer=Just me:A3_Q1_SELF;answer=My team|A colleague|Customer/end user:A3_Q1_ALT		
+A3_Q1_SELF	A3_D1	question	How did this affect you?	My stress|My work|My results|My goals		axis3:self
+A3_Q1_ALT	A3_D1	question	Who benefited from your effort?	Team|Colleague|Customer|Organization		axis3:other
+A3_Q2	A3_Q1_SELF	question	Did you consider others’ perspectives?	Rarely|Sometimes|Often|Always		axis3:self
+A3_Q2B	A3_Q1_ALT	question	How often do you think about impact beyond yourself?	Rarely|Sometimes|Often|Always		axis3:other
+A3_R_SELF	A3_Q2	reflection	Today was centered on your experience. Expanding perspective can reduce pressure and increase meaning.			axis3:self
+A3_R_ALT	A3_Q2B	reflection	You looked beyond yourself. That’s where deeper meaning and leadership begin.			axis3:other
+
+SUMMARY	A3_R_SELF	summary	Today you showed {axis1.dominant} agency, leaned toward {axis2.dominant}, and focused on {axis3.dominant}. Reflect on how small shifts tomorrow can improve all three.			
+SUMMARY2	A3_R_ALT	summary	Today you showed {axis1.dominant} agency, leaned toward {axis2.dominant}, and focused on {axis3.dominant}. Reflect on how small shifts tomorrow can improve all three.			
+END	SUMMARY	end	See you tomorrow.			
+END2	SUMMARY2	end	See you tomorrow.			
